@@ -1,3 +1,34 @@
+
+///*
+const router = require("express").Router();
+const controller = require("../controllers/usersController");
+
+// Matches with "/api/signup"
+router.route("/api/signup")
+  .get(controller.findAll)
+  .post(controller.create);
+
+// Matches with "/api/login"
+router.route("/api/login")
+  .get(controller.findAll)
+  .post(controller.create);
+
+// Matches with "/api/logout"
+router.route("/api/logout")
+  .get(controller.findAll)
+  .post(controller.create);
+
+// Matches with "/api/:id"
+router
+  .route("/:id")
+  .get(controller.findById)
+  .put(controller.update)
+  .delete(controller.remove);
+
+module.exports = router;
+//*/
+
+/*
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
@@ -51,3 +82,4 @@ module.exports = function(app) {
     }
   });
 };
+*/

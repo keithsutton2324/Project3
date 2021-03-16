@@ -1,4 +1,6 @@
 import React from "react";
+import Axios from "axios";
+
 class Signup extends React.Component {
   state = {
     username: "",
@@ -15,16 +17,33 @@ class Signup extends React.Component {
       [name]: value
     })
   }
+  handleSubmit=(event)=> {
+    event.preventDefault();
+    console.log(this.state);
+    let body={
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+        preferredlang: this.state.preferredlang,
+        country: this.state.country
+    }
+    Axios.post(
+      "http://localhost:3001/api/signup",
+       body
+    ).then(
+        // redirect to members page
+    )
+  }
   render() {
     return (<div>
       <h1>Project 3</h1>
-      <form action="/submit" method="post">
-        <h2>Create A User</h2>onChange ={this.onInputChange}
-        <input type="text" class="form-control" name={this.state.username} placeholder="Username" autofocus />
-        <input type="text" class="form-control" name={this.state.password} placeholder="Password" autofocus />
-        <input type="text" class="form-control" name={this.state.email} placeholder="Email" autofocus />
-        <input type="text" class="form-control" name={this.state.preferredlang} placeholder="Preferred Language" autofocus />
-        <input type="text" class="form-control" name={this.state.country} placeholder="Country" autofocus />
+      <form onSubmit={this.handleSubmit}>
+        <h2>Create A User</h2>
+        <input onChange={this.onInputChange} type="text" class="form-control" name={"username"} placeholder="Username" />
+        <input onChange={this.onInputChange} type="text" class="form-control" name={"password"} placeholder="Password" />
+        <input onChange={this.onInputChange} type="text" class="form-control" name={"email"} placeholder="Email" />
+        <input onChange={this.onInputChange} type="text" class="form-control" name={"preferredlang"} placeholder="Preferred Language" />
+        <input onChange={this.onInputChange} type="text" class="form-control" name={"country"} placeholder="Country" />
         <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Submit</button>
       </form>
     </div>
